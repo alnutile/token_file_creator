@@ -12,3 +12,5 @@ default:
 ```
 
 would replace foo with bar in the test
+
+[![Build Status](https://travis-ci.org/alnutile/token_file_creator.png?branch=master)](https://travis-ci.org/alnutile/token_file_creator)
