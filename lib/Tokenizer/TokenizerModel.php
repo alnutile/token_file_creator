@@ -30,7 +30,6 @@ class TokenizerModel {
     }
 
     public function create() {
-        //1. check the root folder exists if not make it
         $check = $this->checkRoot();
         if(!$check) {
             try {
@@ -39,51 +38,47 @@ class TokenizerModel {
                 return array('errors' => 1, 'message' => $e->getMessage());
             }
         }
-        //2. Make sure the file does not exist alread
         $check_for_file = $this->checkForFile();
         if($check_for_file) {
             return array('errors' => 1, 'message' => "File exists already");
         }
-
-        //3. Make sure array has default key
         try {
             $this->checkArrayFormat();
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => $e->getMessage());
         }
-
-        //3. Create the yml file from the passed in array of content
         $yml = $this->convertArrayToTokenFile();
-
-        //4. Write the array of the content to a yml file
         try {
             $this->store();
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
 
-
         return array('errors' => 0, 'message' => "File saved");
     }
 
     public function update() {
-        return "Updated";
+        //1. passing incoming content to yml dump
+        $this->convertArrayToTokenFile();
+        //2. write the output of that (if it is good) to a file
+        try {
+            $this->store();
+        } catch (\Exception $e) {
+            return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
+        }
     }
 
     public function retrieve() {
-        //1. check if it is there
         $check_for_file = $this->checkForFile();
         if(!$check_for_file) {
             return array('errors' => 1, 'message' => "File is missing please create one");
         }
-        //2. open it
         $file = file_get_contents($this->fullpath_to_test_no_filename  . DIRECTORY_SEPARATOR .  self::ROOT_TOKEN_FOLDER . DIRECTORY_SEPARATOR . $this->test_filename . '.token', $use_include_path = TRUE);
 
         if(!$file) {
             return array('errors' => 1, 'message' => "Could not read file");
         }
 
-        //3. convert yml to array
         try {
             $file = $this->ymal_parser->parse($file, $exceptionOnInvalidType = TRUE, $objectSupport = false);
         } catch (\Exception $e) {
@@ -93,12 +88,23 @@ class TokenizerModel {
     }
 
 
+    public function setTokenContent($token = array()) {
+        $this->token_content = $token;
+    }
+
     public function delete() {
-        return "Deleted";
+        $this->filesystem->remove($this->fullpath_to_test_no_filename  . DIRECTORY_SEPARATOR .  self::ROOT_TOKEN_FOLDER . DIRECTORY_SEPARATOR . $this->test_filename . '.token');
     }
 
     public function index() {
         return "Got All";
+    }
+
+    public function getAllTokenParents() {
+        //1. open the file and make it into array
+        //2. pass back all keys
+        $file = $this->retrieve();
+        return array_keys($file);
     }
 
     public function store() {
@@ -111,13 +117,6 @@ class TokenizerModel {
 
     public function getRootTokenFolder() {
         return self::ROOT_TOKEN_FOLDER;
-    }
-    protected function validateFormat() {
-        return "Good Yml";
-    }
-
-    protected function validateKeyValues() {
-        return "All Keys have Values";
     }
 
     public function checkRoot() {
