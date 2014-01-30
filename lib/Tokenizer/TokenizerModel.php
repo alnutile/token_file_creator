@@ -71,12 +71,27 @@ class TokenizerModel {
     }
 
     public function retrieve() {
-        return "Retrieve";
+        //1. check if it is there
+        $check_for_file = $this->checkForFile();
+        if(!$check_for_file) {
+            return array('errors' => 1, 'message' => "File is missing please create one");
+        }
+        //2. open it
+        $file = file_get_contents($this->fullpath_to_test_no_filename  . DIRECTORY_SEPARATOR .  self::ROOT_TOKEN_FOLDER . DIRECTORY_SEPARATOR . $this->test_filename . '.token', $use_include_path = TRUE);
+
+        if(!$file) {
+            return array('errors' => 1, 'message' => "Could not read file");
+        }
+
+        //3. convert yml to array
+        try {
+            $file = $this->ymal_parser->parse($file, $exceptionOnInvalidType = TRUE, $objectSupport = false);
+        } catch (\Exception $e) {
+            return array('errors' => 1, 'message' => $e->getMessage());
+        }
+        return $file;
     }
 
-    public function edit() {
-        return "Editing";
-    }
 
     public function delete() {
         return "Deleted";

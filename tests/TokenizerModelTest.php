@@ -103,5 +103,25 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($result['message'], 'Default configuration is missing, please start your file yml file with default: then a new line for your default tokens');
     }
 
+
+    public function test_create_pass_token_read_fail()
+    {
+        //@TODO get this to work with VFS
+        $yaml = new Yaml();
+        $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest/', $this->token_content, new Filesystem(), $yaml);
+        $result = $tokenizer->retrieve();
+        $this->assertEquals($result['errors'], 1);
+        $this->assertEquals($result['message'], 'File is missing please create one');
+    }
+
+    public function test_create_pass_token_read_pass()
+    {
+        //@TODO get this to work with VFS
+        $yaml = new Yaml();
+        $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest/', $this->token_content, new Filesystem(), $yaml);
+        $tokenizer->store();
+        $result = $tokenizer->retrieve();
+        $this->assertArrayHasKey('default', $result[0]);
+    }
 }
  
