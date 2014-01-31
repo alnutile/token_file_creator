@@ -1,0 +1,160 @@
+@token
+Feature: What do I see in the hook
+
+  Scenario: SL Guinea pig page                           # /assets/token_file_creator/examples/example.feature:4
+object(Behat\Gherkin\Node\StepNode)#1503 (6) {
+  ["type":"Behat\Gherkin\Node\StepNode":private]=>
+  string(5) "Given"
+  ["text":"Behat\Gherkin\Node\StepNode":private]=>
+  string(46) "I am on "http://saucelabs.com/test/guinea-pig""
+  ["parent":"Behat\Gherkin\Node\StepNode":private]=>
+  object(Behat\Gherkin\Node\ScenarioNode)#1490 (6) {
+    ["tags":"Behat\Gherkin\Node\ScenarioNode":private]=>
+    array(0) {
+    }
+    ["title":protected]=>
+    string(18) "SL Guinea pig page"
+    ["steps":protected]=>
+    array(2) {
+      [0]=>
+      *RECURSION*
+      [1]=>
+      object(Behat\Gherkin\Node\StepNode)#1491 (6) {
+        ["type":"Behat\Gherkin\Node\StepNode":private]=>
+        string(4) "Then"
+        ["text":"Behat\Gherkin\Node\StepNode":private]=>
+        string(31) "I should see "i appear 3 times""
+        ["parent":"Behat\Gherkin\Node\StepNode":private]=>
+        *RECURSION*
+        ["arguments":"Behat\Gherkin\Node\StepNode":private]=>
+        array(0) {
+        }
+        ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+        int(6)
+        ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+        NULL
+      }
+    }
+    ["feature":protected]=>
+    object(Behat\Gherkin\Node\FeatureNode)#1481 (10) {
+      ["title":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(25) "What do I see in the hook"
+      ["description":"Behat\Gherkin\Node\FeatureNode":private]=>
+      NULL
+      ["file":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(51) "/assets/token_file_creator/examples/example.feature"
+      ["background":"Behat\Gherkin\Node\FeatureNode":private]=>
+      NULL
+      ["language":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(2) "en"
+      ["scenarios":"Behat\Gherkin\Node\FeatureNode":private]=>
+      array(1) {
+        [0]=>
+        *RECURSION*
+      }
+      ["tags":"Behat\Gherkin\Node\FeatureNode":private]=>
+      array(1) {
+        [0]=>
+        string(5) "token"
+      }
+      ["frozen":"Behat\Gherkin\Node\FeatureNode":private]=>
+      bool(true)
+      ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+      int(2)
+      ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+      string(7) "Feature"
+    }
+    ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+    int(4)
+    ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+    string(8) "Scenario"
+  }
+  ["arguments":"Behat\Gherkin\Node\StepNode":private]=>
+  array(0) {
+  }
+  ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+  int(5)
+  ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+  NULL
+}
+    Given I am on "http://saucelabs.com/test/guinea-pig" # FeatureContext::visit()
+object(Behat\Gherkin\Node\StepNode)#1491 (6) {
+  ["type":"Behat\Gherkin\Node\StepNode":private]=>
+  string(4) "Then"
+  ["text":"Behat\Gherkin\Node\StepNode":private]=>
+  string(31) "I should see "i appear 3 times""
+  ["parent":"Behat\Gherkin\Node\StepNode":private]=>
+  object(Behat\Gherkin\Node\ScenarioNode)#1490 (6) {
+    ["tags":"Behat\Gherkin\Node\ScenarioNode":private]=>
+    array(0) {
+    }
+    ["title":protected]=>
+    string(18) "SL Guinea pig page"
+    ["steps":protected]=>
+    array(2) {
+      [0]=>
+      object(Behat\Gherkin\Node\StepNode)#1503 (6) {
+        ["type":"Behat\Gherkin\Node\StepNode":private]=>
+        string(5) "Given"
+        ["text":"Behat\Gherkin\Node\StepNode":private]=>
+        string(46) "I am on "http://saucelabs.com/test/guinea-pig""
+        ["parent":"Behat\Gherkin\Node\StepNode":private]=>
+        *RECURSION*
+        ["arguments":"Behat\Gherkin\Node\StepNode":private]=>
+        array(0) {
+        }
+        ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+        int(5)
+        ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+        NULL
+      }
+      [1]=>
+      *RECURSION*
+    }
+    ["feature":protected]=>
+    object(Behat\Gherkin\Node\FeatureNode)#1481 (10) {
+      ["title":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(25) "What do I see in the hook"
+      ["description":"Behat\Gherkin\Node\FeatureNode":private]=>
+      NULL
+      ["file":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(51) "/assets/token_file_creator/examples/example.feature"
+      ["background":"Behat\Gherkin\Node\FeatureNode":private]=>
+      NULL
+      ["language":"Behat\Gherkin\Node\FeatureNode":private]=>
+      string(2) "en"
+      ["scenarios":"Behat\Gherkin\Node\FeatureNode":private]=>
+      array(1) {
+        [0]=>
+        *RECURSION*
+      }
+      ["tags":"Behat\Gherkin\Node\FeatureNode":private]=>
+      array(1) {
+        [0]=>
+        string(5) "token"
+      }
+      ["frozen":"Behat\Gherkin\Node\FeatureNode":private]=>
+      bool(true)
+      ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+      int(2)
+      ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+      string(7) "Feature"
+    }
+    ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+    int(4)
+    ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+    string(8) "Scenario"
+  }
+  ["arguments":"Behat\Gherkin\Node\StepNode":private]=>
+  array(0) {
+  }
+  ["line":"Behat\Gherkin\Node\AbstractNode":private]=>
+  int(6)
+  ["keyword":"Behat\Gherkin\Node\AbstractNode":private]=>
+  NULL
+}
+    Then I should see "i appear 3 times"                 # FeatureContext::assertPageContainsText()
+
+1 scenario (1 passed)
+2 steps (2 passed)
+0m1.601s
