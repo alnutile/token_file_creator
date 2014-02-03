@@ -54,7 +54,7 @@ class TokenizerModel {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
 
-        return array('errors' => 0, 'message' => "File saved");
+        return array('errors' => 0, 'message' => "File saved", 'content' => $this->token_content, 'filename' => $this->test_filename);
     }
 
     public function update() {
@@ -66,6 +66,7 @@ class TokenizerModel {
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
+        return array('content' => $this->token_content, 'filename' => $this->test_filename . '.token', 'errors' => 0, 'message' => "File updated");
     }
 
     public function retrieve() {
@@ -84,7 +85,7 @@ class TokenizerModel {
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => $e->getMessage());
         }
-        return $file;
+        return array('content' => $file, 'filename' => $this->test_filename . '.token', 'errors' => 0);
     }
 
 
