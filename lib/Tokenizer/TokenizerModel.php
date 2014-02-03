@@ -54,7 +54,7 @@ class TokenizerModel {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
 
-        return array('errors' => 0, 'message' => "File saved");
+        return array('errors' => 0, 'message' => "File saved", 'content' => $this->token_content, 'filename' => $this->test_filename);
     }
 
     public function update() {
@@ -66,6 +66,7 @@ class TokenizerModel {
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
+        return array('content' => $this->token_content, 'filename' => $this->test_filename . '.token', 'errors' => 0, 'message' => "File updated");
     }
 
     public function retrieve() {
@@ -84,7 +85,7 @@ class TokenizerModel {
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => $e->getMessage());
         }
-        return $file;
+        return array('content' => $file, 'filename' => $this->test_filename . '.token', 'errors' => 0);
     }
 
 
@@ -101,8 +102,6 @@ class TokenizerModel {
     }
 
     public function getAllTokenParents() {
-        //1. open the file and make it into array
-        //2. pass back all keys
         $file = $this->retrieve();
         return array_keys($file);
     }
@@ -136,10 +135,12 @@ class TokenizerModel {
         $this->token_string = $this->ymal_parser->dump($this->token_content, $inline = 2, $indent = 4, $exceptionOnInvalidType = true);
     }
 
+    //@TODO this may not be needed anymore
+    //  but I would like to consider a good
+    //  steps to verify
     public function checkArrayFormat() {
-        if(!array_key_exists('default', $this->token_content)) {
-            throw new \Exception('Default configuration is missing, please start your file yml file with default: then a new line for your default tokens');
-        }
+        // if(isset($this->token_content[0][0])) {
+        //     throw new \Exception('Seems your path is too many levels.');
+        // }
     }
-
 }
