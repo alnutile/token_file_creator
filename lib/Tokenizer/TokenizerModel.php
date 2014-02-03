@@ -101,8 +101,6 @@ class TokenizerModel {
     }
 
     public function getAllTokenParents() {
-        //1. open the file and make it into array
-        //2. pass back all keys
         $file = $this->retrieve();
         return array_keys($file);
     }
@@ -137,9 +135,8 @@ class TokenizerModel {
     }
 
     public function checkArrayFormat() {
-        if(!array_key_exists('default', $this->token_content)) {
+        if(isset($this->token_content[0][0])) {
             throw new \Exception('Default configuration is missing, please start your file yml file with default: then a new line for your default tokens');
         }
     }
-
 }
