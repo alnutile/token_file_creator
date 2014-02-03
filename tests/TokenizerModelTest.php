@@ -80,13 +80,16 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         $this->assertSame($should_be, $token_saved);
     }
 
-    public function test_create_poorly_formatted_array_to_yml() {
-        //@TODO get this to work with VFS
-        $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest', $this->token_content_bad, new Filesystem());
-        $result = $tokenizer->create();
-        $this->assertEquals($result['errors'], 1);
-        $this->assertEquals($result['message'], 'Default configuration is missing, please start your file yml file with default: then a new line for your default tokens');
-    }
+    //@TODO clear this up so there is new validations on this
+    //  though the yml library may help enough
+    //  I could check that there is only one level of tokens etc
+//    public function test_create_poorly_formatted_array_to_yml() {
+//        //@TODO get this to work with VFS
+//        $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest', $this->token_content_bad, new Filesystem());
+//        $result = $tokenizer->create();
+//        $this->assertEquals($result['errors'], 1);
+//        $this->assertEquals($result['message'], 'Default configuration is missing, please start your file yml file with default: then a new line for your default tokens');
+//    }
 
 
     public function test_create_pass_token_read_fail()
