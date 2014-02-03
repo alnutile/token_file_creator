@@ -15,7 +15,6 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
     protected $root;
     protected $tmp;
     protected $token_content;
-    protected $token_content_multi;
     protected $token_content_bad;
     protected $yaml;
 
@@ -31,12 +30,7 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         //  to work with the FileSystem class I still needed it for one test
         $files = new Filesystem();
         $this->root = vfsStream::setup('testDir');
-        $this->token_content = array('default' => array('foo' => 'bar', 'boo' => 'hoo'));
-        $this->token_content_multi = array(
-            'default' =>
-                array('foo' => 'bar', 'boo' => 'hoo'),
-            'foo2' => array('foo' => 'bar')
-        );
+        $this->token_content = array('foo' => 'bar', 'boo' => 'hoo');
         $this->token_content_bad = array('test', 'test', 'test');
         if(is_dir('/tmp/temptest')) {
             $files->remove('/tmp/temptest');
@@ -111,7 +105,7 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest/', $this->token_content, new Filesystem());
         $tokenizer->store();
         $result = $tokenizer->retrieve();
-        $this->assertArrayHasKey('default', $result);
+        $this->assertArrayHasKey('foo', $result);
     }
 
     public function test_create_pass_token_update_pass()
