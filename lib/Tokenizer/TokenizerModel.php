@@ -103,7 +103,7 @@ class TokenizerModel {
 
     public function getAllTokenParents() {
         $file = $this->retrieve();
-        return array_keys($file);
+        return array_keys($file['content']);
     }
 
     public function store() {

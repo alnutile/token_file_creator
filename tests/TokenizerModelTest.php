@@ -108,7 +108,7 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         $tokenizer = $this->instantiateClass('test_filename', '/tmp/temptest/', $this->token_content, new Filesystem());
         $tokenizer->store();
         $result = $tokenizer->retrieve();
-        $this->assertArrayHasKey('foo', $result);
+        $this->assertArrayHasKey('foo', $result['content']);
     }
 
     public function test_create_pass_token_update_pass()
