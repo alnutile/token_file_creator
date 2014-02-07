@@ -77,7 +77,7 @@ class TokenizerModel {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
 
-        return array('errors' => 0, 'message' => "File saved", 'content' => $this->token_content, 'filename' => $this->test_filename);
+        return array('errors' => 0, 'message' => "File saved", 'content' => $this->token_content, 'filename' => $this->token_filename);
     }
 
     public function update() {
@@ -89,7 +89,7 @@ class TokenizerModel {
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => "could not write to file {$e->getMessage()}");
         }
-        return array('content' => $this->token_content, 'filename' => $this->test_filename, 'errors' => 0, 'message' => "File updated");
+        return array('content' => $this->token_content, 'filename' => $this->token_filename, 'errors' => 0, 'message' => "File updated");
     }
 
     public function retrieve() {
@@ -98,14 +98,14 @@ class TokenizerModel {
             return array('errors' => 0, 'message' => "File is missing please create one");
         }
 
-        $file_path = $this->fullpath_to_test_no_filename  . DIRECTORY_SEPARATOR . $this->test_filename;
+        $file_path = $this->fullpath_to_test_no_filename  . DIRECTORY_SEPARATOR . $this->token_filename;
 
         try {
             $file = $this->ymal_parser->parse($file_path, $exceptionOnInvalidType = TRUE, $objectSupport = false);
         } catch (\Exception $e) {
             return array('errors' => 1, 'message' => $e->getMessage());
         }
-        return array('content' => $file, 'filename' => $this->test_filename, 'errors' => 0);
+        return array('content' => $file, 'filename' => $this->token_filename, 'errors' => 0);
     }
 
 
@@ -135,7 +135,7 @@ class TokenizerModel {
     }
 
     public function getRootTokenFolder() {
-        return self::ROOT_TOKEN_FOLDER;
+        return $this->fullpath_to_test_no_filename;
     }
 
     public function checkRoot() {
