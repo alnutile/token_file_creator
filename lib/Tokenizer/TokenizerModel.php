@@ -93,6 +93,14 @@ class TokenizerModel {
     }
 
     public function retrieve() {
+        $check = $this->checkRoot();
+        if(!$check) {
+            try {
+                $this->setRoot();
+            } catch (\Exception $e) {
+                return array('errors' => 1, 'message' => $e->getMessage());
+            }
+        }
         $check_for_file = $this->checkForFile();
         if(!$check_for_file) {
             return array('errors' => 0, 'message' => "File is missing please create one");

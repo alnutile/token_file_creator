@@ -79,6 +79,15 @@ class TokenizerModelTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(vfsStreamWrapper::getRoot()->hasChild('tokens'), "The creation of the token folder did not work");
     }
 
+    public function test_create_token_folder_if_it_does_not_exist()
+    {
+        $this->assertFalse(vfsStreamWrapper::getRoot()->hasChild('tokens'), 'Folder should not exists');
+        $tokenizer = $this->instantiateClass('token_filename_retrieve.token', vfsStream::url('testDir/tokens'), $this->token_content, new Filesystem());
+        $tokenizer->retrieve();
+        $this->assertTrue(vfsStreamWrapper::getRoot()->hasChild('tokens'), 'Folder should now exists even if retrieve notes file does not');
+
+    }
+
     public function test_create_pass_create_token_file()
     {
         //@TODO get this to work with VFS
